@@ -53,14 +53,16 @@ discussion in the PR rather than making the change.
 
 ## Workflows
 
-Four canonical prompts live in `.github/prompts/`:
+Six canonical prompts live in `.github/prompts/`:
 
 | Prompt                            | When to use                                    |
 | --------------------------------- | ---------------------------------------------- |
+| `capture-requirements.prompt.md`  | Free text → requirement YAML files             |
 | `propose-design.prompt.md`        | Given requirements → produce graph YAML        |
 | `validate-design.prompt.md`       | Given a graph → check it against requirements  |
 | `check-standards.prompt.md`       | Run standards over the graph                   |
 | `generate-tests.prompt.md`        | Emit test cases for the graph                  |
+| `analyze-surplus.prompt.md`       | Report actions personas can take beyond requirements |
 
 Each prompt ends with an explicit output contract so your emissions validate
 against the schemas on first shot.
