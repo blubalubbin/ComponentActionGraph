@@ -1,0 +1,27 @@
+id: Dataflow
+description: A Power BI / Fabric dataflow — a reusable ETL artifact producing entities in the Fabric lake.
+sources:
+  - https://learn.microsoft.com/power-bi/transform-model/dataflows/dataflows-introduction-self-service
+allowedEdges:
+  - contained-by
+  - reads-from
+  - writes-to
+  - labeled
+  - depends-on
+actions:
+  - id: view
+    requires: [permission:read]
+  - id: edit
+    requires: [permission:write, role:workspace-contributor-or-above]
+  - id: refresh
+    requires: [permission:write]
+  - id: schedule-refresh
+    requires: [permission:write]
+  - id: take-over
+    requires: [role:workspace-member-or-above]
+  - id: grant-access
+    requires: [permission:reshare]
+  - id: endorse-promoted
+    requires: [role:workspace-contributor-or-above]
+  - id: certify
+    requires: [role:certifier]

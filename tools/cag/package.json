@@ -1,0 +1,24 @@
+{
+  "name": "@componentactiongraph/cag",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CLI for ComponentActionGraph: validate the graph, check standards, render, and measure requirement coverage.",
+  "type": "module",
+  "bin": {
+    "cag": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "cag": "node ./dist/cli.js",
+    "test": "node --test dist/test/*.test.js"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "typescript": "^5.5.4"
+  }
+}

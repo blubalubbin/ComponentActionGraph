@@ -1,0 +1,31 @@
+id: Dashboard
+description: A Power BI dashboard — a single-page canvas of pinned visuals from reports and Q&A tiles.
+sources:
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-share-dashboards
+  - https://learn.microsoft.com/power-bi/consumer/end-user-comment
+allowedEdges:
+  - contained-by
+  - surfaced-in
+  - labeled
+  - depends-on
+actions:
+  - id: view
+    requires: [permission:read]
+  - id: share
+    requires: [permission:reshare, license:pro-or-ppu]
+    maxRecipientsPerAction: 100
+  - id: edit
+    requires: [permission:write, role:workspace-contributor-or-above]
+  - id: copy
+    requires: [permission:build]
+  - id: comment
+    requires: [permission:read]
+  - id: subscribe
+    requires: [permission:read]
+  - id: set-as-featured
+    description: Mark as the user's featured dashboard on the Power BI home page.
+    requires: [permission:read]
+  - id: publish-to-app
+    requires: [role:workspace-member-or-above]
+  - id: embed-in-teams
+    requires: [permission:read]

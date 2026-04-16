@@ -1,0 +1,17 @@
+id: test-exec-can-view-report
+kind: test
+title: Sales leader can view the Finance Sales Report via the Finance app
+type: acceptance
+targets:
+  paths: [path-exec-monthly-sales-review]
+  components: [report:fin-sales-report, app:finance-app]
+  requirements: [req-sales-monthly-view]
+given:
+  - Persona persona:executive is a member of identity:sales-leaders
+  - app:finance-app is published and the audience includes identity:sales-leaders
+when:
+  - Persona executes path-exec-monthly-sales-review step 1 (open finance-app)
+  - Persona executes path-exec-monthly-sales-review step 2 (view fin-sales-report)
+then:
+  - The report renders within 5 seconds
+  - No RLS block is raised

@@ -1,0 +1,16 @@
+id: fin-sales-model
+kind: component
+type: SemanticModel
+name: Finance Sales Model
+description: Star-schema semantic model of sales facts, refreshed nightly.
+owner: identity:finance-bi-team
+environment: prod
+tier: gold
+sensitivity: sensitivity-label:confidential
+tags: [finance, sales]
+edges:
+  - kind: contained-by
+    to: workspace:ws-finance-prod
+  - kind: labeled
+    to: sensitivity-label:confidential
+standardRefs: [std-prod-must-have-owner]

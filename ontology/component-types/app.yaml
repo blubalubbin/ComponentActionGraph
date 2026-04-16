@@ -1,0 +1,27 @@
+id: App
+description: A Power BI app — a packaged read-only distribution surface published from a workspace.
+sources:
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-create-distribute-apps
+  - https://learn.microsoft.com/power-bi/consumer/end-user-apps
+allowedEdges:
+  - contained-by          # the source workspace
+  - granted-to            # to audiences / groups
+  - depends-on
+actions:
+  - id: install
+    description: Install the app from the org store or a direct link.
+    requires: [role:app-audience-member]
+  - id: open
+    requires: [role:app-audience-member]
+  - id: update-audience
+    description: Add/remove members of an audience.
+    requires: [role:workspace-member-or-above]
+  - id: publish
+    requires: [role:workspace-member-or-above]
+  - id: update
+    requires: [role:workspace-member-or-above]
+  - id: unpublish
+    requires: [role:workspace-admin]
+  - id: push
+    description: Automatically install the app for recipients.
+    requires: [role:workspace-member-or-above, tenant-setting:share-external]

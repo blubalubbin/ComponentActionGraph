@@ -1,0 +1,21 @@
+id: fin-sales-report
+kind: component
+type: Report
+name: Finance Sales Report
+description: Monthly sales performance by region, consumed via the Finance app.
+owner: identity:finance-bi-team
+environment: prod
+tier: gold
+sensitivity: sensitivity-label:confidential
+tags: [finance, sales, monthly]
+edges:
+  - kind: reads-from
+    to: semantic-model:fin-sales-model
+  - kind: surfaced-in
+    to: app:finance-app
+  - kind: contained-by
+    to: workspace:ws-finance-prod
+  - kind: labeled
+    to: sensitivity-label:confidential
+requirementRefs: [req-sales-monthly-view, req-export-must-be-labeled]
+standardRefs: [std-prod-must-have-owner, std-report-naming]

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://componentactiongraph.dev/schemas/requirement.schema.json",
+  "title": "Requirement",
+  "description": "Business or functional requirement the graph must satisfy.",
+  "type": "object",
+  "required": ["id", "kind", "title", "priority"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^req-[a-z0-9][a-z0-9-]*$"
+    },
+    "kind": { "const": "requirement" },
+    "version": { "type": "integer", "minimum": 1, "default": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "stakeholder": { "type": "string" },
+    "priority": { "enum": ["must", "should", "could", "wont"] },
+    "satisfiedBy": {
+      "type": "array",
+      "description": "Typed refs to components and/or path ids that satisfy this requirement.",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "verifiedBy": {
+      "type": "array",
+      "description": "Test ids that verify this requirement.",
+      "items": { "type": "string", "pattern": "^test-[a-z0-9][a-z0-9-]*$" },
+      "uniqueItems": true
+    }
+  }
+}

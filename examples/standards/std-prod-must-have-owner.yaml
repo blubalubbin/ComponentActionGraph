@@ -1,0 +1,14 @@
+id: std-prod-must-have-owner
+kind: standard
+title: Production assets must have an owner and a sensitivity label
+rationale: >
+  Every production report, semantic model, dataflow, and app must have an
+  accountable owner and a Purview sensitivity label for governance and
+  incident response.
+severity: error
+appliesTo:
+  type: [Report, SemanticModel, Dataflow, App]
+  where:
+    environment: prod
+rule:
+  requires: [owner, sensitivity]

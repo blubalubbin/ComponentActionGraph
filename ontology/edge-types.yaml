@@ -1,0 +1,35 @@
+# Controlled vocabulary of edge (relationship) kinds used between components.
+# The CLI rejects any edge whose `kind` is not listed here, or whose source/target
+# component type does not declare the edge in its `allowedEdges`.
+edgeTypes:
+  - id: contained-by
+    inverse: contains
+    description: Structural containment (e.g. a Report contained-by a Workspace).
+
+  - id: reads-from
+    description: Runtime data flow — consumer reads data from producer.
+
+  - id: writes-to
+    description: Runtime data flow — producer writes data to target.
+
+  - id: depends-on
+    description: Build-time or logical dependency not covered by reads-from / writes-to.
+
+  - id: surfaced-in
+    description: Content is published into a distribution surface (App, Team, SharePoint site).
+
+  - id: granted-to
+    description: Role or permission grant from a component to an identity/group.
+
+  - id: labeled
+    description: Purview sensitivity label applied to the component.
+
+  - id: certifies
+    description: Endorsement relationship (Promoted / Certified) between a component and an endorser identity.
+
+  - id: gateway-used-by
+    inverse: uses-gateway
+    description: On-premises data gateway linkage.
+
+  - id: member-of
+    description: Identity or group membership.

@@ -1,0 +1,10 @@
+id: std-report-naming
+kind: standard
+title: Report names follow the "<Domain> <Subject> Report" pattern
+rationale: Consistent naming helps end-users discover and disambiguate content.
+severity: warn
+appliesTo:
+  type: [Report]
+rule:
+  pattern:
+    name: "^[A-Z][A-Za-z0-9 ]+ Report$"

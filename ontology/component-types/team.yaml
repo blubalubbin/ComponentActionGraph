@@ -1,0 +1,14 @@
+id: Team
+description: A Microsoft Teams team (or channel) that surfaces Power BI content via tabs and chats.
+sources:
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-embed-report-microsoft-teams
+allowedEdges:
+  - surfaced-in
+  - granted-to
+actions:
+  - id: add-power-bi-tab
+    requires: [permission:write]
+  - id: share-to-chat
+    requires: [permission:reshare]
+  - id: post-link
+    requires: [permission:read]

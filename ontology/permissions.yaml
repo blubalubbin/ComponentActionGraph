@@ -1,0 +1,39 @@
+# Facets that can appear in an action's `requires:` list, of the form `<facet>:<slug>`.
+# These are the authoritative slugs — component-type action catalogs may only
+# reference values defined here.
+
+permissions:
+  - id: permission:read
+    description: View a Power BI item.
+  - id: permission:build
+    description: Create content on top of a semantic model (build permission).
+  - id: permission:reshare
+    description: Share the item with other users.
+  - id: permission:write
+    description: Edit / save changes.
+  - id: permission:admin
+    description: Administrative control over the item or scope.
+
+roles:
+  - id: role:workspace-admin
+  - id: role:workspace-member-or-above
+  - id: role:workspace-contributor-or-above
+  - id: role:workspace-viewer
+  - id: role:certifier
+    description: Identity authorised by the tenant to Certify content.
+  - id: role:app-audience-member
+  - id: role:rls-role-member
+  - id: role:tenant-admin
+
+licenses:
+  - id: license:free
+  - id: license:pro-or-ppu
+  - id: license:premium-capacity
+  - id: license:fabric-capacity
+
+tenantSettings:
+  - id: tenant-setting:export-reports
+  - id: tenant-setting:export-data
+  - id: tenant-setting:publish-to-web
+  - id: tenant-setting:share-external
+  - id: tenant-setting:usage-metrics

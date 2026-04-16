@@ -1,0 +1,18 @@
+id: test-export-label-watermark
+kind: test
+title: PDF export of a Confidential report carries the sensitivity label
+type: acceptance
+targets:
+  paths: [path-exec-monthly-sales-review]
+  components: [report:fin-sales-report, sensitivity-label:confidential]
+  requirements: [req-export-must-be-labeled]
+  standards: [std-confidential-no-publish-to-web]
+given:
+  - Persona persona:executive is signed in
+  - report:fin-sales-report is labeled sensitivity-label:confidential
+when:
+  - Persona executes path-exec-monthly-sales-review step 3 (export-to-pdf)
+then:
+  - The downloaded PDF metadata contains label "Confidential"
+  - The PDF renders the Confidential watermark on every page
+  - An audit event ExportReport is emitted within 5 minutes
