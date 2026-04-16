@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://componentactiongraph.dev/schemas/standard.schema.json",
+  "title": "Standard",
+  "description": "Declarative rule applied to components matching a selector.",
+  "type": "object",
+  "required": ["id", "kind", "appliesTo", "severity", "rule"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^std-[a-z0-9][a-z0-9-]*$"
+    },
+    "kind": { "const": "standard" },
+    "version": { "type": "integer", "minimum": 1, "default": 1 },
+    "title": { "type": "string" },
+    "rationale": { "type": "string" },
+    "severity": { "enum": ["error", "warn", "info"] },
+    "appliesTo": { "$ref": "#/$defs/selector" },
+    "rule": { "$ref": "#/$defs/rule" }
+  },
+  "$defs": {
+    "selector": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]+$" },
+          "minItems": 1
+        },
+        "where": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Key/value filter on component fields, e.g. { environment: prod }."
+        },
+        "tagAny": { "type": "array", "items": { "type": "string" } },
+        "tagAll": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requires":       { "type": "array", "items": { "type": "string" } },
+        "forbids":        { "type": "array", "items": { "type": "string" } },
+        "pattern": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Regex per field, e.g. { name: '^[a-z][a-z0-9-]+$' }."
+        },
+        "edgeRequired":   { "type": "array", "items": { "type": "string" } },
+        "edgeForbidden":  { "type": "array", "items": { "type": "string" } },
+        "forbidsAction":  { "type": "array", "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" } },
+        "requiresAction": { "type": "array", "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" } },
+        "customRuleId":   { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" }
+      }
+    }
+  }
+}

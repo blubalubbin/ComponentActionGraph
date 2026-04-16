@@ -1,0 +1,24 @@
+id: path-exec-monthly-sales-review
+kind: path
+name: Executive monthly sales review
+description: >
+  A sales leader opens the Finance app, views the current month's sales report,
+  and exports a PDF for their own record — the PDF must carry the sensitivity label.
+persona: persona:executive
+preconditions:
+  - Persona is a member of identity:sales-leaders
+  - component:app:finance-app has been published
+  - component:report:fin-sales-report has sensitivity label:confidential
+steps:
+  - component: app:finance-app
+    action: open
+    expects: The app landing page loads.
+  - component: report:fin-sales-report
+    action: view
+    expects: Current-month sales visual renders; no RLS denial.
+  - component: report:fin-sales-report
+    action: export-to-pdf
+    expects: PDF download contains the Confidential watermark and the sensitivity label is preserved.
+postconditions:
+  - An audit:ExportReport event is emitted.
+requirementRefs: [req-sales-monthly-view, req-export-must-be-labeled]

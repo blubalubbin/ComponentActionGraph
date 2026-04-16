@@ -1,0 +1,14 @@
+id: req-export-must-be-labeled
+kind: requirement
+title: Report exports retain the Purview sensitivity label
+description: >
+  Any export (PDF, PPTX, XLSX) of a report that carries a Purview sensitivity
+  label must preserve that label on the exported artifact.
+stakeholder: chief-data-officer
+priority: must
+satisfiedBy:
+  - report:fin-sales-report
+  - sensitivity-label:confidential
+  - path-exec-monthly-sales-review
+verifiedBy:
+  - test-export-label-watermark

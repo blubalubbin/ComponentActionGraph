@@ -1,0 +1,14 @@
+id: req-sales-monthly-view
+kind: requirement
+title: Sales leaders can view monthly sales performance
+description: >
+  Members of the Sales Leaders group must be able to view the current month's
+  sales report via the Finance app on desktop, mobile, and Teams.
+stakeholder: chief-revenue-officer
+priority: must
+satisfiedBy:
+  - report:fin-sales-report
+  - app:finance-app
+  - path-exec-monthly-sales-review
+verifiedBy:
+  - test-exec-can-view-report

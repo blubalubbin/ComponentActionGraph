@@ -1,0 +1,37 @@
+# Abstract personas used in path definitions. Concrete identities in
+# /components/identities/ reference a persona via `metadata.persona`.
+personas:
+  - id: persona:report-consumer
+    description: Read-only business user who views reports via the app or workspace.
+    typicalLicense: license:free          # in Fabric-capacity scenarios
+    typicalRoles: [role:app-audience-member, role:workspace-viewer]
+
+  - id: persona:analyst
+    description: Builds reports and models on top of shared semantic models.
+    typicalLicense: license:pro-or-ppu
+    typicalRoles: [role:workspace-contributor-or-above]
+
+  - id: persona:data-engineer
+    description: Authors dataflows, lakehouses, and pipelines.
+    typicalLicense: license:pro-or-ppu
+    typicalRoles: [role:workspace-member-or-above]
+
+  - id: persona:workspace-admin
+    description: Manages workspace membership, app publishing, capacity binding.
+    typicalLicense: license:pro-or-ppu
+    typicalRoles: [role:workspace-admin]
+
+  - id: persona:data-steward
+    description: Governs labels, endorsements, access reviews.
+    typicalLicense: license:pro-or-ppu
+    typicalRoles: [role:certifier]
+
+  - id: persona:executive
+    description: Senior stakeholder consuming curated reports, often via mobile / Teams.
+    typicalLicense: license:free
+    typicalRoles: [role:app-audience-member]
+
+  - id: persona:tenant-admin
+    description: Configures tenant settings (export, publish-to-web, external sharing).
+    typicalLicense: license:pro-or-ppu
+    typicalRoles: [role:tenant-admin]

@@ -1,0 +1,16 @@
+id: test-finance-workspace-isolated
+kind: test
+title: Finance production workspace is isolated from dev/test environments
+type: integration
+targets:
+  components: [workspace:ws-finance-prod]
+  requirements: [req-finance-prod-workspace]
+  standards: [std-prod-must-have-owner]
+given:
+  - workspace:ws-finance-prod exists with environment=prod
+when:
+  - The graph is queried for workspaces tagged finance
+then:
+  - Exactly one prod Finance workspace exists
+  - It has an owner
+  - It is not tagged dev or test

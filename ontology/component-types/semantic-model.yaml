@@ -1,0 +1,42 @@
+id: SemanticModel
+description: A Power BI semantic model (formerly dataset) — the data layer reports read from.
+sources:
+  - https://learn.microsoft.com/power-bi/connect-data/service-datasets-share
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-endorse-content
+  - https://learn.microsoft.com/power-bi/enterprise/service-admin-rls
+allowedEdges:
+  - contained-by
+  - reads-from          # from a Dataflow / Lakehouse / external source
+  - labeled
+  - depends-on
+  - certifies
+actions:
+  - id: view
+    description: Discover the model and its metadata.
+    requires: [permission:read]
+  - id: grant-build
+    description: Grant Build permission so others can create reports against it.
+    requires: [permission:reshare, role:workspace-contributor-or-above]
+  - id: refresh
+    description: Trigger an on-demand refresh.
+    requires: [permission:write]
+  - id: schedule-refresh
+    requires: [permission:write]
+  - id: take-over
+    description: Reassign model ownership to the current user.
+    requires: [role:workspace-member-or-above]
+  - id: manage-rls-roles
+    description: Configure Row-Level Security role mappings.
+    requires: [permission:admin]
+  - id: manage-ols
+    description: Configure Object-Level Security.
+    requires: [permission:admin]
+  - id: endorse-promoted
+    requires: [role:workspace-contributor-or-above]
+  - id: certify
+    requires: [role:certifier]
+  - id: connect-via-xmla
+    description: Connect using XMLA endpoint (Premium / Fabric).
+    requires: [permission:build, license:premium-capacity]
+  - id: download-pbix
+    requires: [permission:write]

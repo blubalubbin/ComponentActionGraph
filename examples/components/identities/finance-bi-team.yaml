@@ -1,0 +1,8 @@
+id: finance-bi-team
+kind: component
+type: Identity
+name: Finance BI Team
+description: Security group that owns finance reporting assets.
+metadata:
+  entraObjectType: group
+  persona: persona:analyst

@@ -1,0 +1,12 @@
+id: req-finance-prod-workspace
+kind: requirement
+title: Finance has a dedicated production workspace
+description: >
+  The Finance domain owns a single production workspace separate from
+  development and test environments.
+stakeholder: head-of-finance-analytics
+priority: must
+satisfiedBy:
+  - workspace:ws-finance-prod
+verifiedBy:
+  - test-finance-workspace-isolated

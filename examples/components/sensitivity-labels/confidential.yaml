@@ -1,0 +1,9 @@
+id: confidential
+kind: component
+type: SensitivityLabel
+name: Confidential
+description: Purview label applied to internal financial content.
+metadata:
+  purviewId: 87d9f3b0-0000-0000-0000-000000000000
+  watermark: Confidential
+  encryption: true

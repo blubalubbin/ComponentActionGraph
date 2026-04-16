@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://componentactiongraph.dev/schemas/component.schema.json",
+  "title": "Component",
+  "description": "A node instance in the component graph (a specific report, workspace, semantic model, etc.).",
+  "type": "object",
+  "required": ["id", "kind", "type", "name"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Stable, kebab-case identifier unique within its type."
+    },
+    "kind": { "const": "component" },
+    "version": { "type": "integer", "minimum": 1, "default": 1 },
+    "type": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]+$",
+      "description": "Component type id from ontology/component-types/."
+    },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "owner": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$",
+      "description": "Typed ref (usually identity:<slug>) of the accountable owner."
+    },
+    "environment": { "enum": ["dev", "test", "prod"] },
+    "tier": { "enum": ["bronze", "silver", "gold"] },
+    "sensitivity": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$",
+      "description": "Typed ref to a SensitivityLabel component, e.g. sensitivity-label:confidential."
+    },
+    "tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    },
+    "actionsOverride": {
+      "type": "object",
+      "description": "Instance-level narrowing of the type's action catalog. Each key is an action id; value MUST be `disabled`. Widening is forbidden and will be rejected by the CLI.",
+      "additionalProperties": { "enum": ["disabled"] }
+    },
+    "requirementRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "standardRefs":    { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "$defs": {
+    "edge": {
+      "type": "object",
+      "required": ["kind", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Edge kind from ontology/edge-types.yaml."
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$",
+          "description": "Typed ref to another component: <type-slug>:<id>."
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

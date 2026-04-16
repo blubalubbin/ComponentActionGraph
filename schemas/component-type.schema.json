@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://componentactiongraph.dev/schemas/component-type.schema.json",
+  "title": "ComponentType",
+  "description": "Definition of a component type (node kind) plus the catalog of actions a user can perform on it. Action catalogs are grounded in Microsoft Learn docs via the `sources` field.",
+  "type": "object",
+  "required": ["id", "description", "actions"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]+$",
+      "description": "PascalCase type name, e.g. Report, SemanticModel, Workspace."
+    },
+    "extends": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]+$",
+      "description": "Optional parent type; child inherits allowedEdges and actions unless overridden."
+    },
+    "description": { "type": "string", "minLength": 1 },
+    "sources": {
+      "type": "array",
+      "description": "Canonical Microsoft Learn URLs used to derive and verify this type's action catalog.",
+      "items": { "type": "string", "format": "uri" },
+      "uniqueItems": true
+    },
+    "allowedEdges": {
+      "type": "array",
+      "description": "Edge kinds this component type may participate in (from ontology/edge-types.yaml).",
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+      "uniqueItems": true
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/action" }
+    }
+  },
+  "$defs": {
+    "action": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "kebab-case action verb, e.g. view, share, export-to-pdf."
+        },
+        "description": { "type": "string" },
+        "requires": {
+          "type": "array",
+          "description": "Permissions/roles/licences/tenant settings required. Each item is `<facet>:<slug>`.",
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$" }
+        },
+        "sideEffects": {
+          "type": "array",
+          "description": "Observable effects, e.g. audit events, label inheritance.",
+          "items": { "type": "string" }
+        },
+        "maxRecipientsPerAction": { "type": "integer", "minimum": 1 },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

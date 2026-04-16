@@ -1,0 +1,8 @@
+id: sales-leaders
+kind: component
+type: Identity
+name: Sales Leaders
+description: Entra security group used as the Finance app's exec audience.
+metadata:
+  entraObjectType: group
+  persona: persona:executive

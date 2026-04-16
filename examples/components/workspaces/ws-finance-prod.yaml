@@ -1,0 +1,15 @@
+id: ws-finance-prod
+kind: component
+type: Workspace
+name: Finance - Production
+description: Production workspace for the finance reporting domain.
+owner: identity:finance-bi-team
+environment: prod
+tier: gold
+tags: [finance, prod]
+edges:
+  - kind: granted-to
+    to: identity:finance-bi-team
+    notes: Members at workspace Member role.
+requirementRefs: [req-finance-prod-workspace]
+standardRefs: [std-prod-must-have-owner]

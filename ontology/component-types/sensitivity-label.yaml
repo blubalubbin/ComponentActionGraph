@@ -1,0 +1,19 @@
+id: SensitivityLabel
+description: A Microsoft Purview sensitivity label that can be applied to Power BI / M365 content.
+sources:
+  - https://learn.microsoft.com/power-bi/enterprise/service-security-sensitivity-label-overview
+allowedEdges:
+  - labeled              # the label→item assignment edge, from the item's side
+  - granted-to
+actions:
+  - id: apply
+    description: Apply the label to a component.
+    requires: [permission:write]
+  - id: remove
+    requires: [permission:write]
+  - id: inherit
+    description: Propagate the label from a source (e.g. semantic model) to a downstream artifact.
+    requires: []
+  - id: override
+    description: Replace an inherited label with a more restrictive one.
+    requires: [permission:write]

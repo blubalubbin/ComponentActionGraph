@@ -1,0 +1,16 @@
+id: Identity
+description: An Entra ID principal — User, Group, or Service Principal — that can be granted access.
+sources:
+  - https://learn.microsoft.com/entra/identity/users/
+allowedEdges:
+  - member-of
+  - granted-to
+actions:
+  - id: add-to-group
+    requires: [permission:admin]
+  - id: remove-from-group
+    requires: [permission:admin]
+  - id: grant-role
+    requires: [permission:admin]
+  - id: revoke-role
+    requires: [permission:admin]

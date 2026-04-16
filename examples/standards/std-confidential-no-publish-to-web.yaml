@@ -1,0 +1,14 @@
+id: std-confidential-no-publish-to-web
+kind: standard
+title: Confidential reports must not allow Publish to Web
+rationale: >
+  Publish-to-web makes content publicly accessible, which is incompatible with
+  any label above Public. Encoded as an action-level prohibition so the test
+  generator can produce a negative test for it.
+severity: error
+appliesTo:
+  type: [Report]
+  where:
+    sensitivity: sensitivity-label:confidential
+rule:
+  forbidsAction: [publish-to-web]

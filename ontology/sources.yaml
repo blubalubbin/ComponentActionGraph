@@ -1,0 +1,34 @@
+# Canonical Microsoft Learn URLs that ground each component type's action catalog.
+# `cag check-standards --refresh-sources` consults these via the Microsoft Learn
+# MCP server (https://learn.microsoft.com/api/mcp) and warns when the live docs
+# describe an action the ontology has not captured.
+
+sources:
+  Report:
+    - https://learn.microsoft.com/power-bi/collaborate-share/collaborate-share-overview
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-share-reports
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-endorse-content
+    - https://learn.microsoft.com/power-bi/consumer/end-user-subscribe
+  Dashboard:
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-share-dashboards
+    - https://learn.microsoft.com/power-bi/consumer/end-user-comment
+  SemanticModel:
+    - https://learn.microsoft.com/power-bi/connect-data/service-datasets-share
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-endorse-content
+    - https://learn.microsoft.com/power-bi/enterprise/service-admin-rls
+  Workspace:
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-create-workspaces
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-roles-new-workspaces
+  App:
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-create-distribute-apps
+    - https://learn.microsoft.com/power-bi/consumer/end-user-apps
+  Dataflow:
+    - https://learn.microsoft.com/power-bi/transform-model/dataflows/dataflows-introduction-self-service
+  Gateway:
+    - https://learn.microsoft.com/data-integration/gateway/service-gateway-onprem
+  SensitivityLabel:
+    - https://learn.microsoft.com/power-bi/enterprise/service-security-sensitivity-label-overview
+  Team:
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-embed-report-microsoft-teams
+  SharePointSite:
+    - https://learn.microsoft.com/power-bi/collaborate-share/service-embed-report-spo

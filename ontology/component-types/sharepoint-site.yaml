@@ -1,0 +1,12 @@
+id: SharePointSite
+description: A SharePoint Online site that can surface embedded Power BI reports.
+sources:
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-embed-report-spo
+allowedEdges:
+  - surfaced-in
+  - granted-to
+actions:
+  - id: embed-report
+    requires: [permission:write]
+  - id: share-link
+    requires: [permission:reshare]

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://componentactiongraph.dev/schemas/test.schema.json",
+  "title": "TestCase",
+  "description": "A test case that exercises components, paths, standards, and/or requirements.",
+  "type": "object",
+  "required": ["id", "kind", "title", "type", "targets", "given", "when", "then"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^test-[a-z0-9][a-z0-9-]*$"
+    },
+    "kind": { "const": "test" },
+    "version": { "type": "integer", "minimum": 1, "default": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "type": { "enum": ["unit", "integration", "acceptance", "negative"] },
+    "targets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "components":   { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "paths":        { "type": "array", "items": { "type": "string", "pattern": "^path-[a-z0-9][a-z0-9-]*$" }, "uniqueItems": true },
+        "standards":    { "type": "array", "items": { "type": "string", "pattern": "^std-[a-z0-9][a-z0-9-]*$" }, "uniqueItems": true },
+        "requirements": { "type": "array", "items": { "type": "string", "pattern": "^req-[a-z0-9][a-z0-9-]*$" }, "uniqueItems": true }
+      }
+    },
+    "given": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "when":  { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "then":  { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "notes": { "type": "string" }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://componentactiongraph.dev/schemas/path.schema.json",
+  "title": "UserActionPath",
+  "description": "An ordered journey a persona takes through components, using actions from each component type's catalog.",
+  "type": "object",
+  "required": ["id", "kind", "name", "persona", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^path-[a-z0-9][a-z0-9-]*$",
+      "description": "Identifier, prefixed with `path-`."
+    },
+    "kind": { "const": "path" },
+    "version": { "type": "integer", "minimum": 1, "default": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "persona": {
+      "type": "string",
+      "pattern": "^persona:[a-z0-9][a-z0-9-]*$",
+      "description": "Reference to a persona defined in ontology/personas.yaml."
+    },
+    "preconditions": { "type": "array", "items": { "type": "string" } },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/step" }
+    },
+    "postconditions": { "type": "array", "items": { "type": "string" } },
+    "requirementRefs": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+  },
+  "$defs": {
+    "step": {
+      "type": "object",
+      "required": ["component", "action"],
+      "additionalProperties": false,
+      "properties": {
+        "component": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*:[a-z0-9][a-z0-9-]*$",
+          "description": "Typed ref to a component: <type-slug>:<id>."
+        },
+        "action": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Action verb; MUST be in the referenced component's type catalog."
+        },
+        "expects": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

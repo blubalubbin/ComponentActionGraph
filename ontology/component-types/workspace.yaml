@@ -1,0 +1,37 @@
+id: Workspace
+description: A Power BI / Fabric workspace — a container for items with its own role-based access.
+sources:
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-create-workspaces
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-roles-new-workspaces
+allowedEdges:
+  - contains
+  - contained-by          # under a capacity
+  - granted-to
+  - depends-on
+actions:
+  - id: create
+    requires: [license:pro-or-ppu]
+  - id: rename
+    requires: [role:workspace-admin]
+  - id: delete
+    requires: [role:workspace-admin]
+  - id: add-member-as-admin
+    requires: [role:workspace-admin]
+  - id: add-member-as-member
+    requires: [role:workspace-admin]
+  - id: add-member-as-contributor
+    requires: [role:workspace-admin]
+  - id: add-member-as-viewer
+    requires: [role:workspace-admin]
+  - id: remove-member
+    requires: [role:workspace-admin]
+  - id: publish-app
+    requires: [role:workspace-member-or-above]
+  - id: update-app
+    requires: [role:workspace-member-or-above]
+  - id: bind-to-capacity
+    requires: [role:workspace-admin, license:premium-capacity]
+  - id: configure-git-integration
+    requires: [role:workspace-admin]
+  - id: manage-deployment-pipelines
+    requires: [role:workspace-admin]

@@ -1,0 +1,17 @@
+id: finance-app
+kind: component
+type: App
+name: Finance App
+description: Packaged Finance reporting experience distributed to sales leaders.
+owner: identity:finance-bi-team
+environment: prod
+tier: gold
+sensitivity: sensitivity-label:confidential
+tags: [finance, app]
+edges:
+  - kind: contained-by
+    to: workspace:ws-finance-prod
+  - kind: granted-to
+    to: identity:sales-leaders
+requirementRefs: [req-sales-monthly-view]
+standardRefs: [std-prod-must-have-owner]

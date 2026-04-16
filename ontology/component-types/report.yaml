@@ -1,0 +1,54 @@
+id: Report
+description: A Power BI report (.pbix / Fabric report item) with one or more pages of visuals.
+sources:
+  - https://learn.microsoft.com/power-bi/collaborate-share/collaborate-share-overview
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-share-reports
+  - https://learn.microsoft.com/power-bi/collaborate-share/service-endorse-content
+allowedEdges:
+  - reads-from         # from a SemanticModel
+  - surfaced-in        # into an App / Team / SharePointSite
+  - contained-by       # by a Workspace
+  - labeled            # by a SensitivityLabel
+  - depends-on
+  - certifies
+actions:
+  - id: view
+    description: Open and interact with visuals.
+    requires: [permission:read]
+  - id: share
+    description: Direct-share the report with up to 100 recipients per action.
+    requires: [permission:reshare, license:pro-or-ppu]
+    maxRecipientsPerAction: 100
+  - id: edit
+    requires: [permission:write, role:workspace-contributor-or-above]
+  - id: copy
+    description: Save a copy of the report.
+    requires: [permission:build]
+  - id: comment
+    requires: [permission:read]
+  - id: subscribe
+    description: Receive scheduled email snapshots.
+    requires: [permission:read]
+  - id: export-to-pdf
+    requires: [permission:read, tenant-setting:export-reports]
+    sideEffects:
+      - audit:ExportReport
+      - sensitivity-label:inherited
+  - id: export-data
+    description: Export underlying data from a visual.
+    requires: [permission:build, tenant-setting:export-data]
+    sideEffects: [audit:ExportReport]
+  - id: publish-to-app
+    requires: [role:workspace-member-or-above]
+  - id: endorse-promoted
+    description: Mark the report as Promoted.
+    requires: [role:workspace-contributor-or-above]
+  - id: certify
+    description: Mark the report as Certified (tenant-authorised certifiers only).
+    requires: [role:certifier]
+  - id: embed-in-teams
+    requires: [permission:read]
+  - id: pin-visual-to-dashboard
+    requires: [permission:read]
+  - id: save-to-onedrive
+    requires: [permission:build]

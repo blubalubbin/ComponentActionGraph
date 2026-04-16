@@ -1,0 +1,19 @@
+id: Gateway
+description: An on-premises data gateway that bridges cloud services to local data sources.
+sources:
+  - https://learn.microsoft.com/data-integration/gateway/service-gateway-onprem
+allowedEdges:
+  - granted-to
+  - gateway-used-by
+  - depends-on
+actions:
+  - id: register
+    requires: [permission:admin]
+  - id: add-data-source
+    requires: [permission:admin]
+  - id: add-admin
+    requires: [permission:admin]
+  - id: add-user
+    requires: [permission:admin]
+  - id: test-connection
+    requires: [permission:read]
